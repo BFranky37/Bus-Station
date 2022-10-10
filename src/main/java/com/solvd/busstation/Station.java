@@ -16,6 +16,18 @@ public class Station {
         this.y_coordinate = ((Math.random() * (max - min)) + min);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public double getX_coordinate() {
+        return x_coordinate;
+    }
+
+    public double getY_coordinate() {
+        return y_coordinate;
+    }
+
     @Override
     public String toString() {
         return "Station:" +
