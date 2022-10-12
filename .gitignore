@@ -1,5 +1,14 @@
 # Default ignored files
-/shelf/
-/workspace.xml
+HELP.md
+target/
+logs
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
 .idea
-target
+*.iws
+*.iml
+*.ipr
+**/.DS_Store

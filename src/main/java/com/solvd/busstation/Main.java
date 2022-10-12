@@ -22,12 +22,13 @@ public class Main {
         }
         Station startPoint = list1.get(input.nextInt() - 1);
         input.nextLine();
-
+        ShortestPath.computePaths(startPoint);
         logger.info("Now, choose the station that will be your destination:");
         for (int i = 0; i < list1.size(); i++) {
             logger.info(i+1 + ". " + list1.get(i).getName() + " (" + list1.get(i).getX_coordinate() + ", " + list1.get(i).getY_coordinate() + ")");
         }
         Station endPoint = list1.get(input.nextInt() - 1);
-        input.nextLine();
+        List<String> path = ShortestPath.getShortestPathTo(endPoint);
+        logger.info(path);
     }
 }
