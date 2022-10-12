@@ -7,10 +7,10 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class Graph {
-    public int numPoints;
+    private int numPoints;
     private static final Logger logger = LogManager.getLogger(Graph.class);
-    public int numEdges;
-    public List<Station> stations;
+    private int numEdges;
+    private List<Station> stations;
     Set<Integer> connected = new HashSet<Integer>();
     Set<Integer> notConnected = new HashSet<Integer>();
 
@@ -52,7 +52,7 @@ public class Graph {
             connected.add(a);
         }
 
-        while (this.numEdges > 0) {            //randomly generate edges
+        while (this.numEdges > 0) {    //randomly generate edges
 
             int a = random.nextInt(numPoints);
             int b = random.nextInt(numPoints);
@@ -64,10 +64,14 @@ public class Graph {
         }
     }
     void add_edge(int a,int b){
+        Station station1 = stations.get(a);
+        Station station2 = stations.get(b);
         connected.add(a);
         connected.add(b);
-        adjacencyList.get(stations.get(a)).add(stations.get(b));
-        adjacencyList.get(stations.get(b)).add(stations.get(a));
+        adjacencyList.get(station1).add(station2);
+        adjacencyList.get(station2).add(station1);
+        station1.addEdge(station2);
+        station2.addEdge(station1);
         this.numEdges -= 1;
     }
 
