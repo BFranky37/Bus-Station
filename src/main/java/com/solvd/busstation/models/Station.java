@@ -1,12 +1,19 @@
-package com.solvd.busstation;
+package com.solvd.busstation.models;
+
+import com.solvd.busstation.services.EdgeServiceImpl;
+import com.solvd.busstation.services.StationServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Station implements  Comparable<Station> {
+    private final StationServiceImpl stationService = new StationServiceImpl();
+    private final EdgeServiceImpl edgeService = new EdgeServiceImpl();
+
     private final double min = -50.0;
     private final double max = 50.0 ;
 
+    int id;
     private String name;
     private double x_coordinate;
     private double y_coordinate;
@@ -18,6 +25,22 @@ public class Station implements  Comparable<Station> {
         this.name = name;
         this.x_coordinate = ((Math.random() * (max - min)) + min);;
         this.y_coordinate = ((Math.random() * (max - min)) + min);
+
+        id = stationService.createStation(name, x_coordinate, y_coordinate);
+    }
+
+    public Station(String name, double x, double y) {
+        this.name = name;
+        this.x_coordinate = x;
+        this.y_coordinate = y;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -76,5 +99,8 @@ public class Station implements  Comparable<Station> {
         double y2 = target.getY_coordinate();
         double distance = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         this.edges.add(new Edge(target,distance));
+
+        //add edge to database
+        edgeService.createEdge(id, target.getId(), distance);
     }
 }

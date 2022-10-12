@@ -1,4 +1,4 @@
-package com.solvd.busstation.trips;
+package com.solvd.busstation.models.trips;
 
 public class Ticket {
 

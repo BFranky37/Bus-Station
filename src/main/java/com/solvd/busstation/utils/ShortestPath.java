@@ -1,4 +1,7 @@
-package com.solvd.busstation;
+package com.solvd.busstation.utils;
+
+import com.solvd.busstation.models.Edge;
+import com.solvd.busstation.models.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;

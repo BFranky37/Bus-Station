@@ -1,4 +1,4 @@
-package com.solvd.busstation;
+package com.solvd.busstation.models;
 
 public class Edge {
     private Station target;

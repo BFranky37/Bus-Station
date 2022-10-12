@@ -1,4 +1,4 @@
-package com.solvd.busstation.passengers;
+package com.solvd.busstation.models.passengers;
 
 public class Contact {
 

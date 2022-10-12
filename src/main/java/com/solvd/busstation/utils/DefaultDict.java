@@ -1,4 +1,4 @@
-package com.solvd.busstation;
+package com.solvd.busstation.utils;
 
 import java.util.HashMap;
 

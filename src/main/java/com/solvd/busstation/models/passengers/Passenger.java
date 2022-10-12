@@ -1,6 +1,6 @@
-package com.solvd.busstation.passengers;
+package com.solvd.busstation.models.passengers;
 
-import com.solvd.busstation.trips.Ticket;
+import com.solvd.busstation.models.trips.Ticket;
 
 public class Passenger {
 

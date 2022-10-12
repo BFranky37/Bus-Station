@@ -1,4 +1,4 @@
-package com.solvd.busstation.transports;
+package com.solvd.busstation.models.transports;
 
 public class StandardBus implements Bus{
 
