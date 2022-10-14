@@ -78,9 +78,9 @@ public class Station implements  Comparable<Station> {
     @Override
     public String toString() {
         return "Station:" +
-                "name='" + name + '\'' +
-                ", x_coordinate=" + x_coordinate +
-                ", y_coordinate=" + y_coordinate;
+                name + '\'' +
+                " (" + x_coordinate +
+                ", " + y_coordinate + ")";
     }
 
     @Override
