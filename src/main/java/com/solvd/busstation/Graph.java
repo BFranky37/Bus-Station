@@ -22,8 +22,6 @@ public class Graph {
     public DefaultDict<Station, List<Station>> adjacencyList =
             new DefaultDict<Station, List<Station>>(ArrayList.class);
 
-
-
     public Graph(List points)
 
     {
@@ -32,9 +30,9 @@ public class Graph {
             return;
         }
 
-        this.stations = new ArrayList<>(points);
 
         this.numPoints = random.nextInt(points.size()-3) + 3; //making sure we have at least three points
+        this.stations = getRandomSubset(points, numPoints); // getting a random subset of points
         logger.info("number of points");
         logger.info(this.numPoints);
 
@@ -77,6 +75,10 @@ public class Graph {
         this.numEdges -= 1;
     }
 
+    public List<Station> getStations() {
+        return stations;
+    }
+
     int getRandomElement(Set hashSet){
         int index = random.nextInt(hashSet.size());
         Iterator<Integer> iter = hashSet.iterator();
@@ -84,5 +86,19 @@ public class Graph {
             iter.next();
         }
         return iter.next();
+    }
+    public List<Station>
+    getRandomSubset(List<Station> list, int numPoints)
+    {
+        Random rand = new Random();
+        ArrayList<Station> original = new ArrayList<Station>(list);
+        List<Station> subset = new ArrayList<>();
+        for (int i = 0; i < numPoints; i++) {
+            int randomIndex = rand.nextInt(original.size());
+            Station station = original.get(randomIndex);
+            subset.add(station);
+            original.remove(station);
+        }
+        return subset;
     }
 }

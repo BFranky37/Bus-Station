@@ -16,17 +16,18 @@ public class Main {
     public static void main(String[] args) {
         List<Station> list1 = Arrays.asList(new Station("Stop1"),new Station("Stop2"),new Station("Stop3"),new Station("Stop4"),new Station("Stop5"),new Station("Stop6"));
         Graph randomGraph = new Graph(list1);
+        List<Station> chosenSubset = randomGraph.getStations();
         logger.info(randomGraph.adjacencyList);
 
         logger.info("Welcome to the bust station kiosk. We will help you plan a bus ride.");
         logger.info("First, choose the station you will be departing from:");
-        Display.printList(list1);
-        Station startPoint = list1.get(input.nextInt() - 1);
+        Display.printList(chosenSubset);
+        Station startPoint = chosenSubset.get(input.nextInt() - 1);
         input.nextLine();
         ShortestPath.computePaths(startPoint);
         logger.info("Now, choose the station that will be your destination:");
-        Display.printList(list1);
-        Station endPoint = list1.get(input.nextInt() - 1);
+        Display.printList(chosenSubset);
+        Station endPoint = chosenSubset.get(input.nextInt() - 1);
         List<String> path = ShortestPath.getShortestPathTo(endPoint);
         logger.info(path);
     }
