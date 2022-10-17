@@ -13,7 +13,6 @@ public class Station implements  Comparable<Station> {
     private final double min = -50.0;
     private final double max = 50.0 ;
 
-    int id;
     private String name;
     private double x_coordinate;
     private double y_coordinate;
@@ -29,8 +28,7 @@ public class Station implements  Comparable<Station> {
         this.name = name;
         this.x_coordinate = ((Math.random() * (max - min)) + min);;
         this.y_coordinate = ((Math.random() * (max - min)) + min);
-
-        id = stationService.createStation(name, x_coordinate, y_coordinate);
+        stationService.createStation(name, x_coordinate, y_coordinate);
     }
 
     public Station(String name, double x, double y) {
@@ -40,12 +38,9 @@ public class Station implements  Comparable<Station> {
     }
 
     public int getId() {
-        return id;
+        return stationService.getIdByStations(this);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -105,6 +100,6 @@ public class Station implements  Comparable<Station> {
         this.edges.add(new Edge(target,distance));
 
         //add edge to database
-        edgeService.createEdge(id, target.getId(), distance);
+        edgeService.createEdge(this.getId(), target.getId(), distance);
     }
 }
