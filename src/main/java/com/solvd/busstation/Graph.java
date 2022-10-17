@@ -1,6 +1,7 @@
 package com.solvd.busstation;
 
 import com.solvd.busstation.models.Station;
+import com.solvd.busstation.services.StationServiceImpl;
 import com.solvd.busstation.utils.DefaultDict;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +10,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class Graph {
+    private final StationServiceImpl stationService = new StationServiceImpl();
     private int numPoints;
     private static final Logger logger = LogManager.getLogger(Graph.class);
     private int numEdges;
@@ -22,28 +24,24 @@ public class Graph {
     public DefaultDict<Station, List<Station>> adjacencyList =
             new DefaultDict<Station, List<Station>>(ArrayList.class);
 
-    public Graph(List points)
+    public Graph() {
 
-    {
-        if (points.size()<3){
+        List<Station> points = stationService.getAllStations();
+        if (points.size()<3 ){
             logger.warn("There has to be at least three points");
             return;
         }
-
 
         this.numPoints = random.nextInt(points.size()-3) + 3; //making sure we have at least three points
         this.stations = getRandomSubset(points, numPoints); // getting a random subset of points
         logger.info("number of points");
         logger.info(this.numPoints);
-
         connected.add(0);
         IntStream.range(1, this.numPoints).forEach(i -> notConnected.add(i));
-
         // at least P and at most P*(P-1)/2 number of edges
         this.numEdges = random.nextInt(((this.numPoints * (this.numPoints - 1) )/ 2) - this.numPoints + 1 ) + this.numPoints - 1;
         logger.info("number of edges");
         logger.info(this.numEdges);
-
         while (!(notConnected.isEmpty())){         //making sure all points would be connected
             int a = getRandomElement(notConnected);
             int b = getRandomElement(connected);
@@ -53,7 +51,6 @@ public class Graph {
         }
 
         while (this.numEdges > 0) {    //randomly generate edges
-
             int a = random.nextInt(numPoints);
             int b = random.nextInt(numPoints);
             // Check if a and b are the same or there is already an edge between them

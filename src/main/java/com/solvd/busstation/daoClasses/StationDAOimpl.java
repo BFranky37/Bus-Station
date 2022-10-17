@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StationDAOimpl {
     private static final Logger LOGGER = LogManager.getLogger(StationDAOimpl.class);
@@ -16,6 +18,8 @@ public class StationDAOimpl {
     private static final String GET_BY_ID = "SELECT * FROM stations WHERE id = ?;";
     private static final String GET_ID_BY_STATION = "SELECT * FROM stations WHERE name = ? AND x_coordinate = ? AND y_coordinate = ?;";
     private static final String INSERT = "INSERT INTO stations (name, x_coordinate, y_coordinate) VALUES (?, ?, ?);";
+    private static final String readAllQuery = "SELECT * FROM stations";
+
 
     public Station getObjectByID(int id) throws SQLException {
         Connection c = ConnectionPool.getInstance().getConnection();
@@ -28,7 +32,6 @@ public class StationDAOimpl {
             while (rs.next()) {
                 Station p = new Station(rs.getString("name"), rs.getDouble("x_coordinate"),
                         rs.getDouble("y_coordinate"));
-                p.setId(id);
                 return p;
             }
         } catch (SQLException e) {
@@ -86,5 +89,23 @@ public class StationDAOimpl {
             ConnectionPool.getInstance().returnConnection(c);
         }
         throw new SQLException("Could not get ID for this object");
+    }
+
+    public List<Station> getAllStations() {
+        Connection con = ConnectionPool.getInstance().getConnection();
+        List<Station> stations = new ArrayList<>();
+        try(PreparedStatement ps =con.prepareStatement(readAllQuery)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Station station = new Station(rs.getString("name"), rs.getDouble("x_coordinate"),
+                        rs.getDouble("y_coordinate"));
+                stations.add(station);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Getting all records from Stations Table Failed");
+        } finally {
+            ConnectionPool.getInstance().returnConnection(con);
+        }
+        return stations;
     }
 }

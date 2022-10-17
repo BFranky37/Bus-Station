@@ -2,20 +2,33 @@ package com.solvd.busstation;
 
 
 import com.solvd.busstation.models.Station;
+import com.solvd.busstation.services.StationServiceImpl;
 import com.solvd.busstation.utils.Display;
 import com.solvd.busstation.utils.ShortestPath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
     private static final Scanner input = new Scanner(System.in);
+    private static void createObjects(Class classRef, int numObjects){
+        switch(classRef.getSimpleName()) {
+            case "Station":
+                IntStream.range(0, numObjects)
+                        .forEach(
+                                p -> {
+                                    new Station(String.format("stop%d", p+1));
+                                }
+                        );
+        }
+    }
 
     public static void main(String[] args) {
-        List<Station> list1 = Arrays.asList(new Station("Stop1"),new Station("Stop2"),new Station("Stop3"),new Station("Stop4"),new Station("Stop5"),new Station("Stop6"));
-        Graph randomGraph = new Graph(list1);
+        createObjects(Station.class, 10);
+        Graph randomGraph = new Graph();
         List<Station> chosenSubset = randomGraph.getStations();
         logger.info(randomGraph.adjacencyList);
 

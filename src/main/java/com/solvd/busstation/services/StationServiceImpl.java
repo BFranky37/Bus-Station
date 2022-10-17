@@ -1,10 +1,12 @@
 package com.solvd.busstation.services;
 
 import com.solvd.busstation.daoClasses.StationDAOimpl;
+import com.solvd.busstation.models.Station;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class StationServiceImpl {
     private static final Logger LOGGER = LogManager.getLogger(StationDAOimpl.class);
@@ -18,4 +20,20 @@ public class StationServiceImpl {
         }
         return 0;
     }
+
+    public List<Station> getAllStations() {
+        List<Station> stations = null;
+        stations = stationDAOimpl.getAllStations();
+        return stations;
+    }
+
+    public int getIdByStations(Station p){
+        try {
+            return stationDAOimpl.getIDbyObject(p);
+        } catch (SQLException e) {
+            LOGGER.error(e);
+        }
+        return 0;
+    }
+
 }
