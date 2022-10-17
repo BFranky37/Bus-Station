@@ -1,21 +1,23 @@
 package com.solvd.busstation.models.passengers;
 
-public class Contact {
-
-    private int contactID;
+public class Profile {
+    private int id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
 
-    public Contact(int contactID, String firstName, String lastName, String phoneNumber) {
-        this.contactID = contactID;
+    public Profile(String firstName, String lastName, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
 
-    public int getContactID() {
-        return contactID;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

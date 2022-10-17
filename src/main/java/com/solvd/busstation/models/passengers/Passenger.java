@@ -1,36 +1,40 @@
 package com.solvd.busstation.models.passengers;
 
-import com.solvd.busstation.models.trips.Ticket;
-
 public class Passenger {
 
-    private int passID;
-    private Contact contact;
-    private Ticket ticket;
+    private int id;
+    private int profileId;
+    private int ticketId;
 
-    public Passenger(int passID, Contact contact, Ticket ticket) {
-        this.passID = passID;
-        this.contact = contact;
-        this.ticket = ticket;
+    public Passenger(int id) {
     }
 
-    public int getPassID() {
-        return passID;
+    public Passenger(int profileId, int ticketId) {
+        this.profileId = profileId;
+        this.ticketId = ticketId;
     }
 
-    public Contact getContact() {
-        return contact;
+    public int getId() {
+        return id;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public int getProfileId() {
+        return profileId;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
+    }
+
+    public int getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
     }
 }

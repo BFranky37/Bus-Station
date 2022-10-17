@@ -21,6 +21,10 @@ public class Station implements  Comparable<Station> {
     private ArrayList<Edge> edges = new ArrayList();
     private Station previous;
 
+    public Station(double x_coord, double y_coord) {
+        this.x_coordinate = x_coord;
+        this.y_coordinate = y_coord;
+    }
     public Station(String name) {
         this.name = name;
         this.x_coordinate = ((Math.random() * (max - min)) + min);;

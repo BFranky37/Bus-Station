@@ -56,6 +56,26 @@ CREATE TABLE IF NOT EXISTS `BusStation`.`edges` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `BusStation`.`profiles`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `BusStation`.`profiles` (
+ `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `phone_number` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE=InnoDB
+-- -----------------------------------------------------
+-- Table `BusStation`.`passengers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `BusStation`.`passengers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `profileID` int DEFAULT NULL,
+  `ticketID` int DEFAULT NULL,
+  PRIMARY KEY (`id`))
+   ENGINE=InnoDB
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
